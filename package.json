@@ -48,7 +48,7 @@
     "phant-keychain-hex": "^0.2.1",
     "phant-stream-csv": "^2.0.3",
     "phant-meta-nedb": "^3.0.0",
-    "phant-manager-http": "^4.5.10"
+    "phant-manager-http": "git+https://github.com/idcrook/phant-manager-http.git"
   },
   "devDependencies": {
     "grunt-contrib-jshint": "~0.7.0",
