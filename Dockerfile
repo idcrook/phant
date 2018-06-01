@@ -25,9 +25,9 @@ CMD ["npm", "start"]
 
 # docker build -t phant .
 # mkdir ./phant_streams
-# docker build -t phant_server-docker:0.1.1 .
-# docker build --no-cache -t phant_server-docker:0.1.1 .
-# docker tag phant_server-docker:0.1.1 dpcrook/phant_server-docker:0.1.1
-# docker push dpcrook/phant_server-docker:0.1.1
+# docker build -t phant_server-docker:0.1.2 .
+# docker build --no-cache -t phant_server-docker:0.1.2 .
+# docker tag phant_server-docker:0.1.2 dpcrook/phant_server-docker:0.1.2
+# docker push dpcrook/phant_server-docker:0.1.2
 
-# docker run -d -p 8888:8888 -p 8889:8889 -e PHANT_PORT='8888' -e PHANT_TELNET_PORT='8889' -v `pwd`/phant_streams/:/usr/src/app/phant_streams/ dpcrook/phant_server-docker:0.1.1
+# docker run -d -p 8888:8888 -p 8889:8889 -e PHANT_PORT='8888' -e PHANT_TELNET_PORT='8889' -v `pwd`/phant_streams/:/usr/src/app/phant_streams/ dpcrook/phant_server-docker:0.1.2
