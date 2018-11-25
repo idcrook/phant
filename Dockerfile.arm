@@ -1,21 +1,42 @@
-# requires git binary to install optionalDependencies (found at github repo)
-FROM arm32v7/node:8
-
 # https://hub.docker.com/_/node/
 # https://hub.docker.com/r/arm32v7/node/
+FROM arm32v7/node:8 AS base
 
 MAINTAINER idcrook@users.noreply.github.com
 
 # Create app directory
-RUN mkdir -p /usr/src/app
-WORKDIR /usr/src/app
+WORKDIR /app
 
+# ---- Dependencies ----
+FROM base AS dependencies
 # Install app dependencies
-COPY package.json /usr/src/app/
+COPY package*.json ./
+# Install app dependencies (including devDependencies)
+# requires git binary to install optionalDependencies (found at github repo)
 RUN npm install
 
-# Bundle app source
-COPY . /usr/src/app
+
+# ---- Copy files/Build ----
+FROM dependencies AS build
+
+# Create app directory
+WORKDIR /app
+
+# Copy app files
+COPY lib/     ./lib/
+COPY .bin/    .bin/
+
+COPY index.js ./
+
+
+# ---- Release ----
+FROM arm32v7/node:8-slim
+
+# Create app directory
+WORKDIR /app
+
+COPY --from=dependencies /app/package.json ./
+COPY --from=build /app ./
 
 # EXPOSE 8888
 # EXPOSE 8889
@@ -23,13 +44,15 @@ COPY . /usr/src/app
 #    telnet_port = process.env.PHANT_TELNET_PORT || 8081;
 # VOLUME /phant_streams
 
+
 # ENTRYPOINT ["phant"]
 # CMD ["/usr/local/bin/phant"]
 CMD ["npm", "start"]
 
 # docker build -t phant-arm32v7 -f Dockerfile.arm .
 # mkdir ./phant_streams
-# docker tag phant-arm32v7 dpcrook/phant_server-docker:arm32v7
-# docker push dpcrook/phant_server-docker:arm32v7
+# docker run -p 8888:8888 -p 8889:8889 -e PHANT_PORT='8888' -e PHANT_TELNET_PORT='8889' -v `pwd`/phant_streams/:/app/phant_streams/ phant-arm32v7:latest
+# docker stop <CONTAINER_ID>
 
-# docker run -d -p 8888:8888 -p 8889:8889 -e PHANT_PORT='8888' -e PHANT_TELNET_PORT='8889' -v `pwd`/phant_streams/:/usr/src/app/phant_streams/ dpcrook/phant_server-docker:arm32v7
+# docker tag phant-arm32v7 dpcrook/phant_server-docker:0.1.2-arm32v7
+# docker push dpcrook/phant_server-docker:0.1.2-arm32v7
