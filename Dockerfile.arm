@@ -1,5 +1,5 @@
 # ---- A base image ----
-FROM arm32v7/node:8 AS base
+FROM arm32v7/node:8-stretch AS base
 # https://hub.docker.com/_/node/
 # https://hub.docker.com/r/arm32v7/node/
 
@@ -31,7 +31,7 @@ COPY index.js ./
 
 
 # ---- Release ----
-FROM arm32v7/node:8-slim
+FROM arm32v7/node:8-stretch-slim
 # Uses -slim to create a smaller production container
 #  - :alpine builds are not currently available in arm32v7/node
 #  - for a shell to debug inside container, drop the "-slim" tag portion
@@ -58,12 +58,13 @@ CMD ["npm", "start"]
 # docker build -t phant-arm32v7 -f Dockerfile.arm .
 # TESTING:
 # mkdir ./phant_streams
-# docker run -p 8888:8888 -p 8889:8889 -e PHANT_PORT='8888' -e PHANT_TELNET_PORT='8889' -v `pwd`/phant_streams/:/app/phant_streams/ phant-arm32v7:latest
+# docker run -p 8888:8888 -p 8889:8889 -e PHANT_PORT='8888' -e PHANT_TELNET_PORT='8889' -d -v `pwd`/phant_streams/:/app/phant_streams/ phant-arm32v7
+# docker logs <CONTAINER_ID>
 #     > phant@6.8.0 start /app
 #     > .bin/serve
 #     phant http server running on port 8888
 #     phant telnet server running on port 8889
 # docker stop <CONTAINER_ID>
 
-# docker tag phant-arm32v7 dpcrook/phant_server-docker:0.1.2-arm32v7
-# docker push dpcrook/phant_server-docker:0.1.2-arm32v7
+# docker tag phant-arm32v7 dpcrook/phant_server-docker:0.1.3-arm32v7
+# docker push dpcrook/phant_server-docker:0.1.3-arm32v7
