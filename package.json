@@ -3,7 +3,7 @@
   "version": "6.8.0",
   "main": "index.js",
   "description": "data collection server for the internet of things",
-  "homepage": "https://github.com/sparkfun/phant",
+  "homepage": "https://github.com/idcrook/phant",
   "bugs": "https://github.com/sparkfun/phant/issues",
   "author": {
     "name": "Todd Treece",
@@ -12,7 +12,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/sparkfun/phant"
+    "url": "git://github.com/idcrook/phant"
   },
   "license": "GPL-3.0",
   "keywords": [

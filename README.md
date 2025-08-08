@@ -77,8 +77,8 @@ phant>
 git clone https://github.com/idcrook/phant.git
 cd phant
 mkdir ./phant_streams
-docker-compose build
-docker-compose up     # or as service: 'docker-compose start'
+docker compose build
+docker compose up     # or as service: 'docker-compose start'
 open http://localhost:8888
 ```
 
