@@ -82,8 +82,14 @@ docker compose up     # or as service: 'docker-compose start'
 open http://localhost:8888
 ```
 
+<https://hub.docker.com/r/dpcrook/phant_server-docker>
+
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 ## License
-Copyright (c) 2014 SparkFun Electronics. Licensed under the GPL v3 license.
+Copyright (c) 2014 SparkFun Electronics. 
+Copyright (c) 2025 David Crook.
+Licensed under the GPL v3 license.
+
+
