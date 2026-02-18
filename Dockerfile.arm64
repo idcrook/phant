@@ -1,6 +1,6 @@
 # ---- A base image ----
 #FROM arm64v8/node:8-slim AS base
-FROM arm64v8/node:8 AS base
+FROM arm64v8/node:12 AS base
 
 # https://hub.docker.com/r/arm64v8/node
 
