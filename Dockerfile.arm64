@@ -1,11 +1,8 @@
 # ---- A base image ----
-#FROM arm64v8/node:8-slim AS base
 #FROM arm64v8/node:10.24.1 AS base
-#FROM arm64v8/node:14.21.3 AS base
 #FROM node:14.21.3 AS base
 FROM node:20.20-bookworm AS base
-#FROM node:14.21.3 AS base
-# https://hub.docker.com/r/arm64v8/node
+#FROM node:24.13-bookworm AS base
 
 LABEL org.opencontainers.image.authors="idcrook@users.noreply.github.com"
 
@@ -37,11 +34,10 @@ COPY index.js ./
 
 # ---- Release ----
 #FROM arm64v8/node:10.24.1-slim
-#FROM arm64v8/node:14.21.3-slim
 #FROM node:14.21.3-slim
-#FROM node:20.20-slim
 FROM node:20.20-bookworm-slim
-#FROM arm64v8/node:8
+#FROM node:24.13-bookworm-slim
+
 # Uses -slim to create a smaller production container
 #  - :alpine builds are not currently available in arm32v7/node
 #  - for a shell to debug inside container, drop the "-slim" tag portion
@@ -58,7 +54,8 @@ COPY --from=build /app ./
 # VOLUME /phant_streams
 # ENTRYPOINT ["phant"]
 # CMD ["/usr/local/bin/phant"]
-ENV NODE_OPTIONS="--trace-deprecation"
+# DEBUGGING ### ENV NODE_OPTIONS="--trace-deprecation"
+ENV NODE_OPTIONS="--trace-deprecation --trace-uncaught"
 
 CMD ["npm", "start"]
 
@@ -78,6 +75,6 @@ CMD ["npm", "start"]
 #     open http://0.0.0.0:9888
 # docker stop <CONTAINER_ID>
 
-# docker tag phant-arm64 dpcrook/phant_server-docker:0.2.1-arm64
+# docker tag phant-arm64 dpcrook/phant_server-docker:0.3.20-arm64
 # docker login
-# docker push dpcrook/phant_server-docker:0.2.1-arm64
+# docker push dpcrook/phant_server-docker:0.3.20-arm64

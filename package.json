@@ -22,7 +22,7 @@
     "internet of things"
   ],
   "engines": {
-    "node": "^v20.20"
+    "node": "^v24.13"
   },
   "bin": {
     "phant": ".bin/serve"
