@@ -1,7 +1,10 @@
 # ---- A base image ----
 #FROM arm64v8/node:8-slim AS base
-FROM arm64v8/node:12 AS base
-
+#FROM arm64v8/node:10.24.1 AS base
+#FROM arm64v8/node:14.21.3 AS base
+#FROM node:14.21.3 AS base
+FROM node:20.20-bookworm AS base
+#FROM node:14.21.3 AS base
 # https://hub.docker.com/r/arm64v8/node
 
 LABEL org.opencontainers.image.authors="idcrook@users.noreply.github.com"
@@ -14,7 +17,7 @@ FROM base AS dependencies
 # Install app dependencies
 COPY package*.json ./
 #COPY package.json ./
-# Install app dependencies (including devDependencies)
+# Install app dependencies (including optionalDependencies devDependencies)
 RUN npm install
 # requires git binary to install github repo dependencies (slim does not work!)
 
@@ -33,7 +36,11 @@ COPY index.js ./
 
 
 # ---- Release ----
-FROM arm64v8/node:8-slim
+#FROM arm64v8/node:10.24.1-slim
+#FROM arm64v8/node:14.21.3-slim
+#FROM node:14.21.3-slim
+#FROM node:20.20-slim
+FROM node:20.20-bookworm-slim
 #FROM arm64v8/node:8
 # Uses -slim to create a smaller production container
 #  - :alpine builds are not currently available in arm32v7/node
@@ -51,6 +58,8 @@ COPY --from=build /app ./
 # VOLUME /phant_streams
 # ENTRYPOINT ["phant"]
 # CMD ["/usr/local/bin/phant"]
+ENV NODE_OPTIONS="--trace-deprecation"
+
 CMD ["npm", "start"]
 
 # NOTE: Container expects a runtime directory to be visible ->

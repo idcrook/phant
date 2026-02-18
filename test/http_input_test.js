@@ -280,15 +280,32 @@ exports.input = {
       // console.log(response.statusMessage);
       // console.log(response.statusCode);
       test.ok(!error, 'should not error');
-
       test.ok(response.headers['connection'].match('^close'), 'connection should be closed');
-
       test.equal(response.statusMessage, 'Request Header Fields Too Large', 'recent node versions reduce allowed header sizes by default');
       test.equal(response.statusCode, 431, 'status should be 431');
-
-      //test.ok(/exceeded/.test(body), 'body should contain an error message');
       test.equal(response.body, '', 'body will be empty');
 
+      test.done();
+
+    });
+
+  },
+
+  'log get 64k': function(test) {
+    var url = 'http://localhost:' + http_port + '/input/' +
+      keys.publicKey(test_stream.id) + '.txt?private_key=' +
+      keys.privateKey(test_stream.id) + '&test1=get&test2=';
+
+    test.expect(2);
+
+    for (var i = 0; i < 65536; i++) {
+      url += 'x';
+    }
+    request(url, function(error, response, body) {
+      //console.log(error);
+      test.ok(error, 'connection should error');
+
+      test.equal(error.code, 'ECONNRESET', 'recent node versions reduce allowed header sizes by default');
       test.done();
 
     });
