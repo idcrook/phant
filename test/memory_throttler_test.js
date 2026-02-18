@@ -8,8 +8,8 @@ var Phant = require('../index'),
   request = require('request'),
   rimraf = require('rimraf'),
   async = require('async'),
-  app = Phant(),
-  http_port = 8080;
+    app = Phant(),
+    http_port = 8080;
 
 var keys = Keychain({
   publicSalt: 'public salt',

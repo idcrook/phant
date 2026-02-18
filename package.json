@@ -32,11 +32,11 @@
     "test": "grunt"
   },
   "dependencies": {
-    "JSONStream": "^0.8.0",
     "async": "~0.9.0",
     "csv-write-stream": "^0.1.1",
     "datejs": "^1.0.0-rc1",
     "formidable": "~1.0.14",
+    "JSONStream": "^0.8.0",
     "moment-timezone": "^0.2.1",
     "qs": "^1.2.2",
     "routes": "^1.2.0",
@@ -46,9 +46,9 @@
   "optionalDependencies": {
     "dotenv": "^0.2.5",
     "phant-keychain-hex": "^0.2.1",
-    "phant-stream-csv": "^2.0.3",
+    "phant-manager-http": "git+https://github.com/idcrook/phant-manager-http.git",
     "phant-meta-nedb": "^3.0.0",
-    "phant-manager-http": "git+https://github.com/idcrook/phant-manager-http.git"
+    "phant-stream-csv": "^2.0.3"
   },
   "devDependencies": {
     "grunt-contrib-jshint": "~0.7.0",

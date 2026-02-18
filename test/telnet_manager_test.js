@@ -9,8 +9,8 @@ var Phant = require('../index'),
   rimraf = require('rimraf'),
   telnet_client = require('telnet-client'),
   async = require('async'),
-  app = Phant(),
-  connection = new telnet_client();
+    app = Phant(),
+    connection = new telnet_client();
 
 var keys = Keychain({
   publicSalt: 'public salt',
