@@ -12,7 +12,6 @@ var Phant = require('../index'),
   rimraf = require('rimraf'),
   app = Phant(),
   http_port = 8080;
-//http_port = 9888;
 
 var keys = Keychain({
   publicSalt: 'public salt',
