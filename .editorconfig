@@ -18,16 +18,16 @@ charset = utf-8
 indent_style = space
 indent_size = 4
 
+# Indentation for all JS
+[*.js]
+indent_style = space
+indent_size = 2
+
 # Tab indentation (no size specified)
 [Makefile]
 indent_style = tab
 
-# Indentation override for all JS under lib directory
-[{lib,test}/**.js]
-indent_style = space
-indent_size = 2
-
 # Matches the exact files either package.json or .travis.yml
-[{index.js,.jshintrc,Gruntfile.js,package.json,.travis.yml}]
+[{.jshintrc,package.json,.travis.yml}]
 indent_style = space
 indent_size = 2
