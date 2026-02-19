@@ -55,7 +55,7 @@ COPY --from=build /app ./
 # ENTRYPOINT ["phant"]
 # CMD ["/usr/local/bin/phant"]
 # DEBUGGING ### ENV NODE_OPTIONS="--trace-deprecation"
-ENV NODE_OPTIONS="--trace-deprecation --trace-uncaught"
+#ENV NODE_OPTIONS="--trace-deprecation --trace-uncaught"
 
 CMD ["npm", "start"]
 
@@ -75,6 +75,6 @@ CMD ["npm", "start"]
 #     open http://0.0.0.0:9888
 # docker stop <CONTAINER_ID>
 
-# docker tag phant-arm64 dpcrook/phant_server-docker:0.3.20-arm64
+# docker tag phant-arm64 dpcrook/phant_server-docker:0.3.21-arm64
 # docker login
-# docker push dpcrook/phant_server-docker:0.3.20-arm64
+# docker push dpcrook/phant_server-docker:0.3.21-arm64
