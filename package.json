@@ -1,6 +1,6 @@
 {
   "name": "phant",
-  "version": "7.0.0",
+  "version": "7.1.0",
   "main": "index.js",
   "description": "data collection server for the internet of things",
   "homepage": "https://github.com/idcrook/phant",
@@ -22,7 +22,7 @@
     "internet of things"
   ],
   "engines": {
-    "node": "^20.x"
+    "node": "^24.x"
   },
   "bin": {
     "phant": ".bin/serve"
